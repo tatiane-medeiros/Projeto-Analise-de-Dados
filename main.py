@@ -7,6 +7,7 @@ with open('Operacoes_Especiais.csv', mode='r') as csv_file:
     count = 0
     part = {'MPF':0}
     areas = {}
+    ufs = {}
 
     #part 1
     for row in reader:
@@ -36,10 +37,17 @@ with open('Operacoes_Especiais.csv', mode='r') as csv_file:
                 areas[x] = areas[x] +1
             else:
                 areas[x] = 1
-        row["area"] = ";".join(aux)
-        
-
-    #operaçoes com parcerias:
+		
+        #row["area"] = ";".join(aux)        
+        aux = list(row["uf_corrigido"].split(";"))
+        for x in aux:
+            if x[0] == ' ': x = x[1:]
+            if x in ufs:
+                ufs[x] = ufs[x] +1
+            else:
+                ufs[x] = 1
+                        
+            #operaçoes com parcerias:
     for i in part:
         print(i,": ",part[i])
     print("\n")
@@ -49,4 +57,7 @@ with open('Operacoes_Especiais.csv', mode='r') as csv_file:
         print(i,": ",areas[i])
     print("\n")
 
+	 #por ufs
+    for i in ufs:
+        print(i,": ",ufs[i])
 
