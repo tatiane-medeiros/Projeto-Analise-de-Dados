@@ -44,6 +44,9 @@ for i in range(161):
 #operacoes area da saude
 saude_df = pd.DataFrame({'nome': saude_op, 'codigo': saude_cod, 'prejuizo':saude_prej})
 print(saude_df.nlargest(10, 'prejuizo'))
+print("\ndados prejuizos saude :")
+print(saude_df.mean())
+print(saude_df.median())
 
 #operacoes area da educacao
 edu_df = pd.DataFrame({'nome': edu_op, 'codigo': edu_cod, 'prejuizo':edu_prej})

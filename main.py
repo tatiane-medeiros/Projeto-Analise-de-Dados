@@ -1,5 +1,6 @@
 import csv
 import pandas as pd
+import matplotlib.pyplot as plt
 
 
 with open('Operacoes_Especiais.csv', mode='r') as csv_file:
@@ -41,13 +42,15 @@ with open('Operacoes_Especiais.csv', mode='r') as csv_file:
         #row["area"] = ";".join(aux)        
         aux = list(row["uf_corrigido"].split(";"))
         for x in aux:
+            if not x: x = 'n.c.'
             if x[0] == ' ': x = x[1:]
             if x in ufs:
                 ufs[x] = ufs[x] +1
             else:
                 ufs[x] = 1
-                        
-            #operaçoes com parcerias:
+
+   
+    #operaçoes com parcerias:
     for i in part:
         print(i,": ",part[i])
     print("\n")
@@ -57,7 +60,25 @@ with open('Operacoes_Especiais.csv', mode='r') as csv_file:
         print(i,": ",areas[i])
     print("\n")
 
-	 #por ufs
+    #por ufs
     for i in ufs:
         print(i,": ",ufs[i])
+
+    #plt.subplot(311)
+    plt.figure(1)
+    plt.bar(range(len(part)), list(part.values()), align='center')
+    plt.xticks(rotation=45)
+    plt.xticks(range(len(part)), list(part.keys()))
+
+    #plt.subplot(312)
+    plt.figure(2)
+    plt.bar(range(len(areas)), list(areas.values()), align='center', color='cyan')
+    plt.xticks(rotation=90)
+    plt.xticks(range(len(areas)), list(areas.keys()))
+    
+    plt.figure(3)
+    plt.bar(range(len(ufs)), list(ufs.values()), align='center', color = 'red')
+    plt.xticks(rotation=45)
+    plt.xticks(range(len(ufs)), list(ufs.keys()))  
+    plt.show()
 
