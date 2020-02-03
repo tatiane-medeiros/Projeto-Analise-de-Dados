@@ -1,5 +1,6 @@
 import csv
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 
 
@@ -20,11 +21,7 @@ with open('Operacoes_Especiais.csv', mode='r') as csv_file:
                 part[x] = part[x] +1
             else:
                 part[x] = 1
-##            if x == "TCU":
-##                print(row["nome_op"],", ",row["uf_corrigido"])
-##            if  row["prej_pot"]:
-##                if float(row["prej_pot"]) > 50000000:
-##                    print(row["prej_pot"])
+
 
         #estatistica de areas da administração publica
         aux = row["area"].split(";")        
@@ -69,16 +66,21 @@ with open('Operacoes_Especiais.csv', mode='r') as csv_file:
     plt.bar(range(len(part)), list(part.values()), align='center')
     plt.xticks(rotation=45)
     plt.xticks(range(len(part)), list(part.keys()))
+    plt.yticks(np.arange(0,161, 20.0))
+   # plt.xlabel("Parcerias CGU com outras entidades")
+    plt.title("Parcerias CGU com outras entidades")
 
-    #plt.subplot(312)
     plt.figure(2)
     plt.bar(range(len(areas)), list(areas.values()), align='center', color='cyan')
     plt.xticks(rotation=90)
     plt.xticks(range(len(areas)), list(areas.keys()))
+    plt.title("Áreas dos recursos envolvidos nas operações")
     
     plt.figure(3)
     plt.bar(range(len(ufs)), list(ufs.values()), align='center', color = 'red')
     plt.xticks(rotation=45)
-    plt.xticks(range(len(ufs)), list(ufs.keys()))  
+    plt.xticks(range(len(ufs)), list(ufs.keys()))
+    plt.yticks(np.arange(0,21, 2.0))
+    plt.title("Quantidade de operações por estado")
     plt.show()
 

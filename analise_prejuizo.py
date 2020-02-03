@@ -4,14 +4,10 @@ import math
 
 data = pd.read_csv('Operacoes_Especiais.csv', encoding='iso8859-1')
 data.head()
-##data.iat[4,4]
-##data.iloc[0]
 
-##for i in range(161):
-##    if data.iloc[i]["uf_corrigido"] == "PB":
-##        print(data.iloc[i]["nome_op"])
-        
-        #part 2
+pd.options.display.float_format = '{:20,.2f}'.format
+
+#part 2
 saude_op,saude_cod, saude_prej =  [],[],[]
 edu_op, edu_cod, edu_prej =  [],[],[]
 
@@ -51,5 +47,12 @@ print(saude_df.median())
 #operacoes area da educacao
 edu_df = pd.DataFrame({'nome': edu_op, 'codigo': edu_cod, 'prejuizo':edu_prej})
 print(edu_df.nlargest(10, 'prejuizo'))
+print("\ndados prejuizos edu :")
+print(edu_df.mean())
+print(edu_df.median())
+
+print("\ngeral:")
+print(data['prej_pot'].mean())
+print(data['prej_pot'].median())
 
         
